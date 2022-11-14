@@ -39,9 +39,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_line   0000b3af  00000000  00000000  00042616  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00082201  00000000  00000000  0004d9c5  2**0
+ 18 .debug_str    00082202  00000000  00000000  0004d9c5  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  000cfbc6  2**0
+ 19 .comment      00000050  00000000  00000000  000cfbc7  2**0
                   CONTENTS, READONLY
  20 .debug_frame  000029a8  00000000  00000000  000cfc18  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -499,8 +499,8 @@ void fsm_automatic_run(){
  80003ce:	681b      	ldr	r3, [r3, #0]
  80003d0:	2b01      	cmp	r3, #1
  80003d2:	d105      	bne.n	80003e0 <fsm_automatic_run+0x18>
-		updateClockBuffer();
- 80003d4:	f000 fdd4 	bl	8000f80 <updateClockBuffer>
+		LedBufferAutomatic();
+ 80003d4:	f000 fdd4 	bl	8000f80 <LedBufferAutomatic>
 		setTimer4(1000);
  80003d8:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  80003dc:	f001 f8aa 	bl	8001534 <setTimer4>
@@ -2122,40 +2122,40 @@ void update7SEG(int index) {
  8000f78:	20000090 	.word	0x20000090
  8000f7c:	40010800 	.word	0x40010800
 
-08000f80 <updateClockBuffer>:
+08000f80 <LedBufferAutomatic>:
 
 int count1 = 0;
 int count2 = 0;
-void updateClockBuffer() {
+void LedBufferAutomatic() {
  8000f80:	b480      	push	{r7}
  8000f82:	af00      	add	r7, sp, #0
 	if(count1 < RedCounter) { //red 1 first
- 8000f84:	4b95      	ldr	r3, [pc, #596]	; (80011dc <updateClockBuffer+0x25c>)
+ 8000f84:	4b95      	ldr	r3, [pc, #596]	; (80011dc <LedBufferAutomatic+0x25c>)
  8000f86:	681a      	ldr	r2, [r3, #0]
- 8000f88:	4b95      	ldr	r3, [pc, #596]	; (80011e0 <updateClockBuffer+0x260>)
+ 8000f88:	4b95      	ldr	r3, [pc, #596]	; (80011e0 <LedBufferAutomatic+0x260>)
  8000f8a:	681b      	ldr	r3, [r3, #0]
  8000f8c:	429a      	cmp	r2, r3
- 8000f8e:	da1f      	bge.n	8000fd0 <updateClockBuffer+0x50>
+ 8000f8e:	da1f      	bge.n	8000fd0 <LedBufferAutomatic+0x50>
 		led_buffer[0] = (RedCounter-count1)/10;
- 8000f90:	4b93      	ldr	r3, [pc, #588]	; (80011e0 <updateClockBuffer+0x260>)
+ 8000f90:	4b93      	ldr	r3, [pc, #588]	; (80011e0 <LedBufferAutomatic+0x260>)
  8000f92:	681a      	ldr	r2, [r3, #0]
- 8000f94:	4b91      	ldr	r3, [pc, #580]	; (80011dc <updateClockBuffer+0x25c>)
+ 8000f94:	4b91      	ldr	r3, [pc, #580]	; (80011dc <LedBufferAutomatic+0x25c>)
  8000f96:	681b      	ldr	r3, [r3, #0]
  8000f98:	1ad3      	subs	r3, r2, r3
- 8000f9a:	4a92      	ldr	r2, [pc, #584]	; (80011e4 <updateClockBuffer+0x264>)
+ 8000f9a:	4a92      	ldr	r2, [pc, #584]	; (80011e4 <LedBufferAutomatic+0x264>)
  8000f9c:	fb82 1203 	smull	r1, r2, r2, r3
  8000fa0:	1092      	asrs	r2, r2, #2
  8000fa2:	17db      	asrs	r3, r3, #31
  8000fa4:	1ad3      	subs	r3, r2, r3
- 8000fa6:	4a90      	ldr	r2, [pc, #576]	; (80011e8 <updateClockBuffer+0x268>)
+ 8000fa6:	4a90      	ldr	r2, [pc, #576]	; (80011e8 <LedBufferAutomatic+0x268>)
  8000fa8:	6013      	str	r3, [r2, #0]
 		led_buffer[1] = (RedCounter-count1)%10;
- 8000faa:	4b8d      	ldr	r3, [pc, #564]	; (80011e0 <updateClockBuffer+0x260>)
+ 8000faa:	4b8d      	ldr	r3, [pc, #564]	; (80011e0 <LedBufferAutomatic+0x260>)
  8000fac:	681a      	ldr	r2, [r3, #0]
- 8000fae:	4b8b      	ldr	r3, [pc, #556]	; (80011dc <updateClockBuffer+0x25c>)
+ 8000fae:	4b8b      	ldr	r3, [pc, #556]	; (80011dc <LedBufferAutomatic+0x25c>)
  8000fb0:	681b      	ldr	r3, [r3, #0]
  8000fb2:	1ad1      	subs	r1, r2, r3
- 8000fb4:	4b8b      	ldr	r3, [pc, #556]	; (80011e4 <updateClockBuffer+0x264>)
+ 8000fb4:	4b8b      	ldr	r3, [pc, #556]	; (80011e4 <LedBufferAutomatic+0x264>)
  8000fb6:	fb83 2301 	smull	r2, r3, r3, r1
  8000fba:	109a      	asrs	r2, r3, #2
  8000fbc:	17cb      	asrs	r3, r1, #31
@@ -2165,47 +2165,47 @@ void updateClockBuffer() {
  8000fc4:	4413      	add	r3, r2
  8000fc6:	005b      	lsls	r3, r3, #1
  8000fc8:	1aca      	subs	r2, r1, r3
- 8000fca:	4b87      	ldr	r3, [pc, #540]	; (80011e8 <updateClockBuffer+0x268>)
+ 8000fca:	4b87      	ldr	r3, [pc, #540]	; (80011e8 <LedBufferAutomatic+0x268>)
  8000fcc:	605a      	str	r2, [r3, #4]
- 8000fce:	e059      	b.n	8001084 <updateClockBuffer+0x104>
+ 8000fce:	e059      	b.n	8001084 <LedBufferAutomatic+0x104>
 	}
 	else {
 		if(count1 < (RedCounter + GreenCounter)) { //then green 1
- 8000fd0:	4b83      	ldr	r3, [pc, #524]	; (80011e0 <updateClockBuffer+0x260>)
+ 8000fd0:	4b83      	ldr	r3, [pc, #524]	; (80011e0 <LedBufferAutomatic+0x260>)
  8000fd2:	681a      	ldr	r2, [r3, #0]
- 8000fd4:	4b85      	ldr	r3, [pc, #532]	; (80011ec <updateClockBuffer+0x26c>)
+ 8000fd4:	4b85      	ldr	r3, [pc, #532]	; (80011ec <LedBufferAutomatic+0x26c>)
  8000fd6:	681b      	ldr	r3, [r3, #0]
  8000fd8:	441a      	add	r2, r3
- 8000fda:	4b80      	ldr	r3, [pc, #512]	; (80011dc <updateClockBuffer+0x25c>)
+ 8000fda:	4b80      	ldr	r3, [pc, #512]	; (80011dc <LedBufferAutomatic+0x25c>)
  8000fdc:	681b      	ldr	r3, [r3, #0]
  8000fde:	429a      	cmp	r2, r3
- 8000fe0:	dd25      	ble.n	800102e <updateClockBuffer+0xae>
+ 8000fe0:	dd25      	ble.n	800102e <LedBufferAutomatic+0xae>
 			led_buffer[0] = (RedCounter+GreenCounter-count1)/10;
- 8000fe2:	4b7f      	ldr	r3, [pc, #508]	; (80011e0 <updateClockBuffer+0x260>)
+ 8000fe2:	4b7f      	ldr	r3, [pc, #508]	; (80011e0 <LedBufferAutomatic+0x260>)
  8000fe4:	681a      	ldr	r2, [r3, #0]
- 8000fe6:	4b81      	ldr	r3, [pc, #516]	; (80011ec <updateClockBuffer+0x26c>)
+ 8000fe6:	4b81      	ldr	r3, [pc, #516]	; (80011ec <LedBufferAutomatic+0x26c>)
  8000fe8:	681b      	ldr	r3, [r3, #0]
  8000fea:	441a      	add	r2, r3
- 8000fec:	4b7b      	ldr	r3, [pc, #492]	; (80011dc <updateClockBuffer+0x25c>)
+ 8000fec:	4b7b      	ldr	r3, [pc, #492]	; (80011dc <LedBufferAutomatic+0x25c>)
  8000fee:	681b      	ldr	r3, [r3, #0]
  8000ff0:	1ad3      	subs	r3, r2, r3
- 8000ff2:	4a7c      	ldr	r2, [pc, #496]	; (80011e4 <updateClockBuffer+0x264>)
+ 8000ff2:	4a7c      	ldr	r2, [pc, #496]	; (80011e4 <LedBufferAutomatic+0x264>)
  8000ff4:	fb82 1203 	smull	r1, r2, r2, r3
  8000ff8:	1092      	asrs	r2, r2, #2
  8000ffa:	17db      	asrs	r3, r3, #31
  8000ffc:	1ad3      	subs	r3, r2, r3
- 8000ffe:	4a7a      	ldr	r2, [pc, #488]	; (80011e8 <updateClockBuffer+0x268>)
+ 8000ffe:	4a7a      	ldr	r2, [pc, #488]	; (80011e8 <LedBufferAutomatic+0x268>)
  8001000:	6013      	str	r3, [r2, #0]
 			led_buffer[1] = (RedCounter+GreenCounter-count1)%10;
- 8001002:	4b77      	ldr	r3, [pc, #476]	; (80011e0 <updateClockBuffer+0x260>)
+ 8001002:	4b77      	ldr	r3, [pc, #476]	; (80011e0 <LedBufferAutomatic+0x260>)
  8001004:	681a      	ldr	r2, [r3, #0]
- 8001006:	4b79      	ldr	r3, [pc, #484]	; (80011ec <updateClockBuffer+0x26c>)
+ 8001006:	4b79      	ldr	r3, [pc, #484]	; (80011ec <LedBufferAutomatic+0x26c>)
  8001008:	681b      	ldr	r3, [r3, #0]
  800100a:	441a      	add	r2, r3
- 800100c:	4b73      	ldr	r3, [pc, #460]	; (80011dc <updateClockBuffer+0x25c>)
+ 800100c:	4b73      	ldr	r3, [pc, #460]	; (80011dc <LedBufferAutomatic+0x25c>)
  800100e:	681b      	ldr	r3, [r3, #0]
  8001010:	1ad1      	subs	r1, r2, r3
- 8001012:	4b74      	ldr	r3, [pc, #464]	; (80011e4 <updateClockBuffer+0x264>)
+ 8001012:	4b74      	ldr	r3, [pc, #464]	; (80011e4 <LedBufferAutomatic+0x264>)
  8001014:	fb83 2301 	smull	r2, r3, r3, r1
  8001018:	109a      	asrs	r2, r3, #2
  800101a:	17cb      	asrs	r3, r1, #31
@@ -2215,43 +2215,43 @@ void updateClockBuffer() {
  8001022:	4413      	add	r3, r2
  8001024:	005b      	lsls	r3, r3, #1
  8001026:	1aca      	subs	r2, r1, r3
- 8001028:	4b6f      	ldr	r3, [pc, #444]	; (80011e8 <updateClockBuffer+0x268>)
+ 8001028:	4b6f      	ldr	r3, [pc, #444]	; (80011e8 <LedBufferAutomatic+0x268>)
  800102a:	605a      	str	r2, [r3, #4]
- 800102c:	e02a      	b.n	8001084 <updateClockBuffer+0x104>
+ 800102c:	e02a      	b.n	8001084 <LedBufferAutomatic+0x104>
 		}
 		else { //and finally yellow 1
 			led_buffer[0] = (RedCounter+GreenCounter+YellowCounter-count1)/10;
- 800102e:	4b6c      	ldr	r3, [pc, #432]	; (80011e0 <updateClockBuffer+0x260>)
+ 800102e:	4b6c      	ldr	r3, [pc, #432]	; (80011e0 <LedBufferAutomatic+0x260>)
  8001030:	681a      	ldr	r2, [r3, #0]
- 8001032:	4b6e      	ldr	r3, [pc, #440]	; (80011ec <updateClockBuffer+0x26c>)
+ 8001032:	4b6e      	ldr	r3, [pc, #440]	; (80011ec <LedBufferAutomatic+0x26c>)
  8001034:	681b      	ldr	r3, [r3, #0]
  8001036:	441a      	add	r2, r3
- 8001038:	4b6d      	ldr	r3, [pc, #436]	; (80011f0 <updateClockBuffer+0x270>)
+ 8001038:	4b6d      	ldr	r3, [pc, #436]	; (80011f0 <LedBufferAutomatic+0x270>)
  800103a:	681b      	ldr	r3, [r3, #0]
  800103c:	441a      	add	r2, r3
- 800103e:	4b67      	ldr	r3, [pc, #412]	; (80011dc <updateClockBuffer+0x25c>)
+ 800103e:	4b67      	ldr	r3, [pc, #412]	; (80011dc <LedBufferAutomatic+0x25c>)
  8001040:	681b      	ldr	r3, [r3, #0]
  8001042:	1ad3      	subs	r3, r2, r3
- 8001044:	4a67      	ldr	r2, [pc, #412]	; (80011e4 <updateClockBuffer+0x264>)
+ 8001044:	4a67      	ldr	r2, [pc, #412]	; (80011e4 <LedBufferAutomatic+0x264>)
  8001046:	fb82 1203 	smull	r1, r2, r2, r3
  800104a:	1092      	asrs	r2, r2, #2
  800104c:	17db      	asrs	r3, r3, #31
  800104e:	1ad3      	subs	r3, r2, r3
- 8001050:	4a65      	ldr	r2, [pc, #404]	; (80011e8 <updateClockBuffer+0x268>)
+ 8001050:	4a65      	ldr	r2, [pc, #404]	; (80011e8 <LedBufferAutomatic+0x268>)
  8001052:	6013      	str	r3, [r2, #0]
 			led_buffer[1] = (RedCounter+GreenCounter+YellowCounter-count1)%10;
- 8001054:	4b62      	ldr	r3, [pc, #392]	; (80011e0 <updateClockBuffer+0x260>)
+ 8001054:	4b62      	ldr	r3, [pc, #392]	; (80011e0 <LedBufferAutomatic+0x260>)
  8001056:	681a      	ldr	r2, [r3, #0]
- 8001058:	4b64      	ldr	r3, [pc, #400]	; (80011ec <updateClockBuffer+0x26c>)
+ 8001058:	4b64      	ldr	r3, [pc, #400]	; (80011ec <LedBufferAutomatic+0x26c>)
  800105a:	681b      	ldr	r3, [r3, #0]
  800105c:	441a      	add	r2, r3
- 800105e:	4b64      	ldr	r3, [pc, #400]	; (80011f0 <updateClockBuffer+0x270>)
+ 800105e:	4b64      	ldr	r3, [pc, #400]	; (80011f0 <LedBufferAutomatic+0x270>)
  8001060:	681b      	ldr	r3, [r3, #0]
  8001062:	441a      	add	r2, r3
- 8001064:	4b5d      	ldr	r3, [pc, #372]	; (80011dc <updateClockBuffer+0x25c>)
+ 8001064:	4b5d      	ldr	r3, [pc, #372]	; (80011dc <LedBufferAutomatic+0x25c>)
  8001066:	681b      	ldr	r3, [r3, #0]
  8001068:	1ad1      	subs	r1, r2, r3
- 800106a:	4b5e      	ldr	r3, [pc, #376]	; (80011e4 <updateClockBuffer+0x264>)
+ 800106a:	4b5e      	ldr	r3, [pc, #376]	; (80011e4 <LedBufferAutomatic+0x264>)
  800106c:	fb83 2301 	smull	r2, r3, r3, r1
  8001070:	109a      	asrs	r2, r3, #2
  8001072:	17cb      	asrs	r3, r1, #31
@@ -2261,61 +2261,61 @@ void updateClockBuffer() {
  800107a:	4413      	add	r3, r2
  800107c:	005b      	lsls	r3, r3, #1
  800107e:	1aca      	subs	r2, r1, r3
- 8001080:	4b59      	ldr	r3, [pc, #356]	; (80011e8 <updateClockBuffer+0x268>)
+ 8001080:	4b59      	ldr	r3, [pc, #356]	; (80011e8 <LedBufferAutomatic+0x268>)
  8001082:	605a      	str	r2, [r3, #4]
 		}
 	}
 	count1++;
- 8001084:	4b55      	ldr	r3, [pc, #340]	; (80011dc <updateClockBuffer+0x25c>)
+ 8001084:	4b55      	ldr	r3, [pc, #340]	; (80011dc <LedBufferAutomatic+0x25c>)
  8001086:	681b      	ldr	r3, [r3, #0]
  8001088:	3301      	adds	r3, #1
- 800108a:	4a54      	ldr	r2, [pc, #336]	; (80011dc <updateClockBuffer+0x25c>)
+ 800108a:	4a54      	ldr	r2, [pc, #336]	; (80011dc <LedBufferAutomatic+0x25c>)
  800108c:	6013      	str	r3, [r2, #0]
 	if(count1 >= RedCounter+GreenCounter+YellowCounter)
- 800108e:	4b54      	ldr	r3, [pc, #336]	; (80011e0 <updateClockBuffer+0x260>)
+ 800108e:	4b54      	ldr	r3, [pc, #336]	; (80011e0 <LedBufferAutomatic+0x260>)
  8001090:	681a      	ldr	r2, [r3, #0]
- 8001092:	4b56      	ldr	r3, [pc, #344]	; (80011ec <updateClockBuffer+0x26c>)
+ 8001092:	4b56      	ldr	r3, [pc, #344]	; (80011ec <LedBufferAutomatic+0x26c>)
  8001094:	681b      	ldr	r3, [r3, #0]
  8001096:	441a      	add	r2, r3
- 8001098:	4b55      	ldr	r3, [pc, #340]	; (80011f0 <updateClockBuffer+0x270>)
+ 8001098:	4b55      	ldr	r3, [pc, #340]	; (80011f0 <LedBufferAutomatic+0x270>)
  800109a:	681b      	ldr	r3, [r3, #0]
  800109c:	441a      	add	r2, r3
- 800109e:	4b4f      	ldr	r3, [pc, #316]	; (80011dc <updateClockBuffer+0x25c>)
+ 800109e:	4b4f      	ldr	r3, [pc, #316]	; (80011dc <LedBufferAutomatic+0x25c>)
  80010a0:	681b      	ldr	r3, [r3, #0]
  80010a2:	429a      	cmp	r2, r3
- 80010a4:	dc02      	bgt.n	80010ac <updateClockBuffer+0x12c>
+ 80010a4:	dc02      	bgt.n	80010ac <LedBufferAutomatic+0x12c>
 		count1 = 0; //back to red 1
- 80010a6:	4b4d      	ldr	r3, [pc, #308]	; (80011dc <updateClockBuffer+0x25c>)
+ 80010a6:	4b4d      	ldr	r3, [pc, #308]	; (80011dc <LedBufferAutomatic+0x25c>)
  80010a8:	2200      	movs	r2, #0
  80010aa:	601a      	str	r2, [r3, #0]
 
 	if(count2 < GreenCounter) { // green 2 first
- 80010ac:	4b51      	ldr	r3, [pc, #324]	; (80011f4 <updateClockBuffer+0x274>)
+ 80010ac:	4b51      	ldr	r3, [pc, #324]	; (80011f4 <LedBufferAutomatic+0x274>)
  80010ae:	681a      	ldr	r2, [r3, #0]
- 80010b0:	4b4e      	ldr	r3, [pc, #312]	; (80011ec <updateClockBuffer+0x26c>)
+ 80010b0:	4b4e      	ldr	r3, [pc, #312]	; (80011ec <LedBufferAutomatic+0x26c>)
  80010b2:	681b      	ldr	r3, [r3, #0]
  80010b4:	429a      	cmp	r2, r3
- 80010b6:	da1f      	bge.n	80010f8 <updateClockBuffer+0x178>
+ 80010b6:	da1f      	bge.n	80010f8 <LedBufferAutomatic+0x178>
 		led_buffer[2] = (GreenCounter-count2)/10;
- 80010b8:	4b4c      	ldr	r3, [pc, #304]	; (80011ec <updateClockBuffer+0x26c>)
+ 80010b8:	4b4c      	ldr	r3, [pc, #304]	; (80011ec <LedBufferAutomatic+0x26c>)
  80010ba:	681a      	ldr	r2, [r3, #0]
- 80010bc:	4b4d      	ldr	r3, [pc, #308]	; (80011f4 <updateClockBuffer+0x274>)
+ 80010bc:	4b4d      	ldr	r3, [pc, #308]	; (80011f4 <LedBufferAutomatic+0x274>)
  80010be:	681b      	ldr	r3, [r3, #0]
  80010c0:	1ad3      	subs	r3, r2, r3
- 80010c2:	4a48      	ldr	r2, [pc, #288]	; (80011e4 <updateClockBuffer+0x264>)
+ 80010c2:	4a48      	ldr	r2, [pc, #288]	; (80011e4 <LedBufferAutomatic+0x264>)
  80010c4:	fb82 1203 	smull	r1, r2, r2, r3
  80010c8:	1092      	asrs	r2, r2, #2
  80010ca:	17db      	asrs	r3, r3, #31
  80010cc:	1ad3      	subs	r3, r2, r3
- 80010ce:	4a46      	ldr	r2, [pc, #280]	; (80011e8 <updateClockBuffer+0x268>)
+ 80010ce:	4a46      	ldr	r2, [pc, #280]	; (80011e8 <LedBufferAutomatic+0x268>)
  80010d0:	6093      	str	r3, [r2, #8]
 		led_buffer[3] = (GreenCounter-count2)%10;
- 80010d2:	4b46      	ldr	r3, [pc, #280]	; (80011ec <updateClockBuffer+0x26c>)
+ 80010d2:	4b46      	ldr	r3, [pc, #280]	; (80011ec <LedBufferAutomatic+0x26c>)
  80010d4:	681a      	ldr	r2, [r3, #0]
- 80010d6:	4b47      	ldr	r3, [pc, #284]	; (80011f4 <updateClockBuffer+0x274>)
+ 80010d6:	4b47      	ldr	r3, [pc, #284]	; (80011f4 <LedBufferAutomatic+0x274>)
  80010d8:	681b      	ldr	r3, [r3, #0]
  80010da:	1ad1      	subs	r1, r2, r3
- 80010dc:	4b41      	ldr	r3, [pc, #260]	; (80011e4 <updateClockBuffer+0x264>)
+ 80010dc:	4b41      	ldr	r3, [pc, #260]	; (80011e4 <LedBufferAutomatic+0x264>)
  80010de:	fb83 2301 	smull	r2, r3, r3, r1
  80010e2:	109a      	asrs	r2, r3, #2
  80010e4:	17cb      	asrs	r3, r1, #31
@@ -2325,47 +2325,47 @@ void updateClockBuffer() {
  80010ec:	4413      	add	r3, r2
  80010ee:	005b      	lsls	r3, r3, #1
  80010f0:	1aca      	subs	r2, r1, r3
- 80010f2:	4b3d      	ldr	r3, [pc, #244]	; (80011e8 <updateClockBuffer+0x268>)
+ 80010f2:	4b3d      	ldr	r3, [pc, #244]	; (80011e8 <LedBufferAutomatic+0x268>)
  80010f4:	60da      	str	r2, [r3, #12]
- 80010f6:	e059      	b.n	80011ac <updateClockBuffer+0x22c>
+ 80010f6:	e059      	b.n	80011ac <LedBufferAutomatic+0x22c>
 	}
 	else {
 		if(count2 < (GreenCounter + YellowCounter)) { //then yellow 2
- 80010f8:	4b3c      	ldr	r3, [pc, #240]	; (80011ec <updateClockBuffer+0x26c>)
+ 80010f8:	4b3c      	ldr	r3, [pc, #240]	; (80011ec <LedBufferAutomatic+0x26c>)
  80010fa:	681a      	ldr	r2, [r3, #0]
- 80010fc:	4b3c      	ldr	r3, [pc, #240]	; (80011f0 <updateClockBuffer+0x270>)
+ 80010fc:	4b3c      	ldr	r3, [pc, #240]	; (80011f0 <LedBufferAutomatic+0x270>)
  80010fe:	681b      	ldr	r3, [r3, #0]
  8001100:	441a      	add	r2, r3
- 8001102:	4b3c      	ldr	r3, [pc, #240]	; (80011f4 <updateClockBuffer+0x274>)
+ 8001102:	4b3c      	ldr	r3, [pc, #240]	; (80011f4 <LedBufferAutomatic+0x274>)
  8001104:	681b      	ldr	r3, [r3, #0]
  8001106:	429a      	cmp	r2, r3
- 8001108:	dd25      	ble.n	8001156 <updateClockBuffer+0x1d6>
+ 8001108:	dd25      	ble.n	8001156 <LedBufferAutomatic+0x1d6>
 			led_buffer[2] = (GreenCounter+YellowCounter-count2)/10;
- 800110a:	4b38      	ldr	r3, [pc, #224]	; (80011ec <updateClockBuffer+0x26c>)
+ 800110a:	4b38      	ldr	r3, [pc, #224]	; (80011ec <LedBufferAutomatic+0x26c>)
  800110c:	681a      	ldr	r2, [r3, #0]
- 800110e:	4b38      	ldr	r3, [pc, #224]	; (80011f0 <updateClockBuffer+0x270>)
+ 800110e:	4b38      	ldr	r3, [pc, #224]	; (80011f0 <LedBufferAutomatic+0x270>)
  8001110:	681b      	ldr	r3, [r3, #0]
  8001112:	441a      	add	r2, r3
- 8001114:	4b37      	ldr	r3, [pc, #220]	; (80011f4 <updateClockBuffer+0x274>)
+ 8001114:	4b37      	ldr	r3, [pc, #220]	; (80011f4 <LedBufferAutomatic+0x274>)
  8001116:	681b      	ldr	r3, [r3, #0]
  8001118:	1ad3      	subs	r3, r2, r3
- 800111a:	4a32      	ldr	r2, [pc, #200]	; (80011e4 <updateClockBuffer+0x264>)
+ 800111a:	4a32      	ldr	r2, [pc, #200]	; (80011e4 <LedBufferAutomatic+0x264>)
  800111c:	fb82 1203 	smull	r1, r2, r2, r3
  8001120:	1092      	asrs	r2, r2, #2
  8001122:	17db      	asrs	r3, r3, #31
  8001124:	1ad3      	subs	r3, r2, r3
- 8001126:	4a30      	ldr	r2, [pc, #192]	; (80011e8 <updateClockBuffer+0x268>)
+ 8001126:	4a30      	ldr	r2, [pc, #192]	; (80011e8 <LedBufferAutomatic+0x268>)
  8001128:	6093      	str	r3, [r2, #8]
 			led_buffer[3] = (GreenCounter+YellowCounter-count2)%10;
- 800112a:	4b30      	ldr	r3, [pc, #192]	; (80011ec <updateClockBuffer+0x26c>)
+ 800112a:	4b30      	ldr	r3, [pc, #192]	; (80011ec <LedBufferAutomatic+0x26c>)
  800112c:	681a      	ldr	r2, [r3, #0]
- 800112e:	4b30      	ldr	r3, [pc, #192]	; (80011f0 <updateClockBuffer+0x270>)
+ 800112e:	4b30      	ldr	r3, [pc, #192]	; (80011f0 <LedBufferAutomatic+0x270>)
  8001130:	681b      	ldr	r3, [r3, #0]
  8001132:	441a      	add	r2, r3
- 8001134:	4b2f      	ldr	r3, [pc, #188]	; (80011f4 <updateClockBuffer+0x274>)
+ 8001134:	4b2f      	ldr	r3, [pc, #188]	; (80011f4 <LedBufferAutomatic+0x274>)
  8001136:	681b      	ldr	r3, [r3, #0]
  8001138:	1ad1      	subs	r1, r2, r3
- 800113a:	4b2a      	ldr	r3, [pc, #168]	; (80011e4 <updateClockBuffer+0x264>)
+ 800113a:	4b2a      	ldr	r3, [pc, #168]	; (80011e4 <LedBufferAutomatic+0x264>)
  800113c:	fb83 2301 	smull	r2, r3, r3, r1
  8001140:	109a      	asrs	r2, r3, #2
  8001142:	17cb      	asrs	r3, r1, #31
@@ -2375,43 +2375,43 @@ void updateClockBuffer() {
  800114a:	4413      	add	r3, r2
  800114c:	005b      	lsls	r3, r3, #1
  800114e:	1aca      	subs	r2, r1, r3
- 8001150:	4b25      	ldr	r3, [pc, #148]	; (80011e8 <updateClockBuffer+0x268>)
+ 8001150:	4b25      	ldr	r3, [pc, #148]	; (80011e8 <LedBufferAutomatic+0x268>)
  8001152:	60da      	str	r2, [r3, #12]
- 8001154:	e02a      	b.n	80011ac <updateClockBuffer+0x22c>
+ 8001154:	e02a      	b.n	80011ac <LedBufferAutomatic+0x22c>
 		}
 		else { //and finally red 2
 			led_buffer[2] = (RedCounter+GreenCounter+YellowCounter-count2)/10;
- 8001156:	4b22      	ldr	r3, [pc, #136]	; (80011e0 <updateClockBuffer+0x260>)
+ 8001156:	4b22      	ldr	r3, [pc, #136]	; (80011e0 <LedBufferAutomatic+0x260>)
  8001158:	681a      	ldr	r2, [r3, #0]
- 800115a:	4b24      	ldr	r3, [pc, #144]	; (80011ec <updateClockBuffer+0x26c>)
+ 800115a:	4b24      	ldr	r3, [pc, #144]	; (80011ec <LedBufferAutomatic+0x26c>)
  800115c:	681b      	ldr	r3, [r3, #0]
  800115e:	441a      	add	r2, r3
- 8001160:	4b23      	ldr	r3, [pc, #140]	; (80011f0 <updateClockBuffer+0x270>)
+ 8001160:	4b23      	ldr	r3, [pc, #140]	; (80011f0 <LedBufferAutomatic+0x270>)
  8001162:	681b      	ldr	r3, [r3, #0]
  8001164:	441a      	add	r2, r3
- 8001166:	4b23      	ldr	r3, [pc, #140]	; (80011f4 <updateClockBuffer+0x274>)
+ 8001166:	4b23      	ldr	r3, [pc, #140]	; (80011f4 <LedBufferAutomatic+0x274>)
  8001168:	681b      	ldr	r3, [r3, #0]
  800116a:	1ad3      	subs	r3, r2, r3
- 800116c:	4a1d      	ldr	r2, [pc, #116]	; (80011e4 <updateClockBuffer+0x264>)
+ 800116c:	4a1d      	ldr	r2, [pc, #116]	; (80011e4 <LedBufferAutomatic+0x264>)
  800116e:	fb82 1203 	smull	r1, r2, r2, r3
  8001172:	1092      	asrs	r2, r2, #2
  8001174:	17db      	asrs	r3, r3, #31
  8001176:	1ad3      	subs	r3, r2, r3
- 8001178:	4a1b      	ldr	r2, [pc, #108]	; (80011e8 <updateClockBuffer+0x268>)
+ 8001178:	4a1b      	ldr	r2, [pc, #108]	; (80011e8 <LedBufferAutomatic+0x268>)
  800117a:	6093      	str	r3, [r2, #8]
 			led_buffer[3] = (RedCounter+GreenCounter+YellowCounter-count2)%10;
- 800117c:	4b18      	ldr	r3, [pc, #96]	; (80011e0 <updateClockBuffer+0x260>)
+ 800117c:	4b18      	ldr	r3, [pc, #96]	; (80011e0 <LedBufferAutomatic+0x260>)
  800117e:	681a      	ldr	r2, [r3, #0]
- 8001180:	4b1a      	ldr	r3, [pc, #104]	; (80011ec <updateClockBuffer+0x26c>)
+ 8001180:	4b1a      	ldr	r3, [pc, #104]	; (80011ec <LedBufferAutomatic+0x26c>)
  8001182:	681b      	ldr	r3, [r3, #0]
  8001184:	441a      	add	r2, r3
- 8001186:	4b1a      	ldr	r3, [pc, #104]	; (80011f0 <updateClockBuffer+0x270>)
+ 8001186:	4b1a      	ldr	r3, [pc, #104]	; (80011f0 <LedBufferAutomatic+0x270>)
  8001188:	681b      	ldr	r3, [r3, #0]
  800118a:	441a      	add	r2, r3
- 800118c:	4b19      	ldr	r3, [pc, #100]	; (80011f4 <updateClockBuffer+0x274>)
+ 800118c:	4b19      	ldr	r3, [pc, #100]	; (80011f4 <LedBufferAutomatic+0x274>)
  800118e:	681b      	ldr	r3, [r3, #0]
  8001190:	1ad1      	subs	r1, r2, r3
- 8001192:	4b14      	ldr	r3, [pc, #80]	; (80011e4 <updateClockBuffer+0x264>)
+ 8001192:	4b14      	ldr	r3, [pc, #80]	; (80011e4 <LedBufferAutomatic+0x264>)
  8001194:	fb83 2301 	smull	r2, r3, r3, r1
  8001198:	109a      	asrs	r2, r3, #2
  800119a:	17cb      	asrs	r3, r1, #31
@@ -2421,31 +2421,31 @@ void updateClockBuffer() {
  80011a2:	4413      	add	r3, r2
  80011a4:	005b      	lsls	r3, r3, #1
  80011a6:	1aca      	subs	r2, r1, r3
- 80011a8:	4b0f      	ldr	r3, [pc, #60]	; (80011e8 <updateClockBuffer+0x268>)
+ 80011a8:	4b0f      	ldr	r3, [pc, #60]	; (80011e8 <LedBufferAutomatic+0x268>)
  80011aa:	60da      	str	r2, [r3, #12]
 		}
 	}
 	count2++;
- 80011ac:	4b11      	ldr	r3, [pc, #68]	; (80011f4 <updateClockBuffer+0x274>)
+ 80011ac:	4b11      	ldr	r3, [pc, #68]	; (80011f4 <LedBufferAutomatic+0x274>)
  80011ae:	681b      	ldr	r3, [r3, #0]
  80011b0:	3301      	adds	r3, #1
- 80011b2:	4a10      	ldr	r2, [pc, #64]	; (80011f4 <updateClockBuffer+0x274>)
+ 80011b2:	4a10      	ldr	r2, [pc, #64]	; (80011f4 <LedBufferAutomatic+0x274>)
  80011b4:	6013      	str	r3, [r2, #0]
 	if(count2 >= RedCounter+GreenCounter+YellowCounter)
- 80011b6:	4b0a      	ldr	r3, [pc, #40]	; (80011e0 <updateClockBuffer+0x260>)
+ 80011b6:	4b0a      	ldr	r3, [pc, #40]	; (80011e0 <LedBufferAutomatic+0x260>)
  80011b8:	681a      	ldr	r2, [r3, #0]
- 80011ba:	4b0c      	ldr	r3, [pc, #48]	; (80011ec <updateClockBuffer+0x26c>)
+ 80011ba:	4b0c      	ldr	r3, [pc, #48]	; (80011ec <LedBufferAutomatic+0x26c>)
  80011bc:	681b      	ldr	r3, [r3, #0]
  80011be:	441a      	add	r2, r3
- 80011c0:	4b0b      	ldr	r3, [pc, #44]	; (80011f0 <updateClockBuffer+0x270>)
+ 80011c0:	4b0b      	ldr	r3, [pc, #44]	; (80011f0 <LedBufferAutomatic+0x270>)
  80011c2:	681b      	ldr	r3, [r3, #0]
  80011c4:	441a      	add	r2, r3
- 80011c6:	4b0b      	ldr	r3, [pc, #44]	; (80011f4 <updateClockBuffer+0x274>)
+ 80011c6:	4b0b      	ldr	r3, [pc, #44]	; (80011f4 <LedBufferAutomatic+0x274>)
  80011c8:	681b      	ldr	r3, [r3, #0]
  80011ca:	429a      	cmp	r2, r3
- 80011cc:	dc02      	bgt.n	80011d4 <updateClockBuffer+0x254>
+ 80011cc:	dc02      	bgt.n	80011d4 <LedBufferAutomatic+0x254>
 		count2 = 0; //back to green 2
- 80011ce:	4b09      	ldr	r3, [pc, #36]	; (80011f4 <updateClockBuffer+0x274>)
+ 80011ce:	4b09      	ldr	r3, [pc, #36]	; (80011f4 <LedBufferAutomatic+0x274>)
  80011d0:	2200      	movs	r2, #0
  80011d2:	601a      	str	r2, [r3, #0]
 }

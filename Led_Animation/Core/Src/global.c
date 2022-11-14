@@ -85,7 +85,7 @@ void update7SEG(int index) {
 
 int count1 = 0;
 int count2 = 0;
-void updateClockBuffer() {
+void LedBufferAutomatic() {
 	if(count1 < RedCounter) { //red 1 first
 		led_buffer[0] = (RedCounter-count1)/10;
 		led_buffer[1] = (RedCounter-count1)%10;

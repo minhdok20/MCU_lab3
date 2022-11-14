@@ -12,7 +12,7 @@ int status;
 
 void fsm_automatic_run(){
 	if(timer4_flag == 1){
-		updateClockBuffer();
+		LedBufferAutomatic();
 		setTimer4(1000);
 	}
 

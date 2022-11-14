@@ -1,3 +1,3 @@
 ../Core/Src/global.c:16:6:display7SEG	72	static
 ../Core/Src/global.c:43:6:update7SEG	16	static
-../Core/Src/global.c:88:6:updateClockBuffer	4	static
+../Core/Src/global.c:88:6:LedBufferAutomatic	4	static

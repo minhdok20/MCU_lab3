@@ -49,6 +49,6 @@ void update7SEG(int index);
 extern int count1;
 extern int count2;
 
-void updateClockBuffer();
+void LedBufferAutomatic();
 
 #endif /* INC_GLOBAL_H_ */
